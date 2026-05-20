@@ -1,0 +1,6 @@
+# Files and folders to ignore when deploying to Vercel
+node_modules
+.vscode
+.env
+.DS_Store
+README.md

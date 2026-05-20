@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evie Fawbush — Author</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1: #132a13;
+    --c2: #31572c;
+    --c3: #4f772d;
+    --c4: #90a955;
+    --c5: #ecf39e;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Jost', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--c1);
+    color: var(--c5);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    background: rgba(19,42,19,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(144,169,85,0.15);
+  }
+
+  .nav-name {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--c5);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--c5); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 6rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--c4);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(4rem, 7vw, 7rem);
+    font-weight: 300;
+    line-height: 0.9;
+    color: var(--c5);
+    margin-bottom: 2rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--c4);
+  }
+
+  .hero-tagline {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: rgba(236,243,158,0.7);
+    max-width: 380px;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c1);
+    background: var(--c4);
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    width: fit-content;
+  }
+
+  .btn-primary:hover {
+    background: var(--c5);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c4);
+    border: 1px solid var(--c3);
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: border-color 0.25s, color 0.25s;
+    width: fit-content;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--c4);
+    color: var(--c5);
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* botanical illustration SVG background */
+  .hero-illustration {
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+  }
+
+  .portrait-frame {
+    position: relative;
+    z-index: 2;
+    width: 340px;
+    height: 420px;
+  }
+
+  .portrait-bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, var(--c2) 0%, var(--c1) 100%);
+    border: 1px solid rgba(144,169,85,0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .portrait-silhouette {
+    width: 240px;
+    height: 310px;
+    background: var(--c2);
+    border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+  }
+
+  .portrait-accent {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(144,169,85,0.4);
+  }
+
+  .portrait-caption {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--c4);
+    letter-spacing: 0.05em;
+  }
+
+  /* ORGANIC DIVIDER */
+  .divider-leaf {
+    text-align: center;
+    padding: 0.5rem 0;
+    color: var(--c3);
+    font-size: 1.2rem;
+    letter-spacing: 0.5rem;
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 7rem 5rem;
+  }
+
+  .section-label {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--c3);
+    margin-bottom: 1rem;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--c1);
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--c5);
+    border-left: 2px solid var(--c3);
+    padding-left: 2rem;
+  }
+
+  .about-text p {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: rgba(236,243,158,0.75);
+    margin-bottom: 1.4rem;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(79,119,45,0.3);
+  }
+
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--c4);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--c3);
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* BOOKS */
+  .books {
+    background: var(--c2);
+  }
+
+  .books h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--c5);
+    margin-bottom: 3.5rem;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .book-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .book-card:hover { transform: translateY(-6px); }
+
+  .book-cover {
+    width: 100%;
+    aspect-ratio: 2/3;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+  }
+
+  .book-cover-1 { background: linear-gradient(135deg, var(--c1) 30%, var(--c3) 100%); }
+  .book-cover-2 { background: linear-gradient(160deg, var(--c3) 0%, var(--c4) 80%); }
+  .book-cover-3 { background: linear-gradient(120deg, var(--c2) 0%, var(--c1) 70%); }
+
+  .book-cover-art {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 1.2rem;
+  }
+
+  .book-cover-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--c5);
+    line-height: 1.2;
+  }
+
+  .book-cover-2 .book-cover-title { color: var(--c1); }
+
+  .book-cover-author {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(236,243,158,0.7);
+  }
+
+  .book-cover-2 .book-cover-author { color: rgba(19,42,19,0.6); }
+
+  .book-cover-deco {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: 0.15;
+  }
+
+  .book-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--c5);
+    margin-bottom: 0.3rem;
+  }
+
+  .book-meta {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--c4);
+    margin-bottom: 0.8rem;
+  }
+
+  .book-blurb {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(236,243,158,0.6);
+  }
+
+  /* PRESS */
+  .press {
+    background: var(--c1);
+    border-top: 1px solid rgba(79,119,45,0.25);
+    border-bottom: 1px solid rgba(79,119,45,0.25);
+    padding: 5rem;
+  }
+
+  .press-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .press-quotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .press-quote {
+    text-align: left;
+    padding: 2rem;
+    border: 1px solid rgba(79,119,45,0.25);
+    position: relative;
+  }
+
+  .press-quote::before {
+    content: '\201C';
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    color: var(--c3);
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    line-height: 1;
+  }
+
+  .press-quote p {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.75;
+    color: rgba(236,243,158,0.8);
+    margin-bottom: 1rem;
+  }
+
+  .press-source {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--c3);
+  }
+
+  /* EVENTS */
+  .events {
+    background: var(--c2);
+    padding: 7rem 5rem;
+  }
+
+  .events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .events h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--c5);
+  }
+
+  .events-list {
+    border-top: 1px solid rgba(144,169,85,0.2);
+  }
+
+  .event-row {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(144,169,85,0.15);
+    transition: background 0.2s;
+  }
+
+  .event-row:hover {
+    background: rgba(79,119,45,0.08);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0 -1rem;
+  }
+
+  .event-date {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--c4);
+  }
+
+  .event-date strong {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--c5);
+    line-height: 1;
+  }
+
+  .event-name {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--c5);
+    margin-bottom: 0.3rem;
+    font-weight: 400;
+  }
+
+  .event-location {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(236,243,158,0.55);
+  }
+
+  .event-tag {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--c3);
+    border: 1px solid var(--c3);
+    padding: 0.35rem 0.8rem;
+  }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: var(--c3);
+    padding: 7rem 5rem;
+    text-align: center;
+  }
+
+  .newsletter h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--c1);
+    margin-bottom: 1rem;
+  }
+
+  .newsletter p {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: rgba(19,42,19,0.7);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  .newsletter-form {
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+    gap: 0;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 1rem 1.4rem;
+    background: rgba(19,42,19,0.15);
+    border: 1px solid rgba(19,42,19,0.3);
+    border-right: none;
+    color: var(--c1);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    outline: none;
+  }
+
+  .newsletter-form input::placeholder {
+    color: rgba(19,42,19,0.45);
+  }
+
+  .newsletter-form button {
+    padding: 1rem 1.8rem;
+    background: var(--c1);
+    color: var(--c5);
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .newsletter-form button:hover { background: var(--c2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--c1);
+    border-top: 1px solid rgba(79,119,45,0.2);
+    padding: 3rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-name {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--c4);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--c3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--c4); }
+
+  .footer-copy {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    color: var(--c2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.7s 0.1s both; }
+  h1 { animation: fadeUp 0.7s 0.25s both; }
+  .hero-tagline { animation: fadeUp 0.7s 0.4s both; }
+  .hero-ctas { animation: fadeUp 0.7s 0.55s both; }
+  .portrait-frame { animation: fadeUp 0.9s 0.35s both; }
+
+  /* subtle noise texture via SVG filter */
+  .texture {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .leaf-deco {
+    color: var(--c3);
+    font-size: 1.1rem;
+    margin: 0 0.4rem;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="texture"></div>
+
+<nav>
+  <a href="#" class="nav-name">Evie Fawbush</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <p class="hero-eyebrow">&#11835; Author &amp; Naturalist Writer</p>
+    <h1>Evie<br><em>Fawbush</em></h1>
+    <p class="hero-tagline">Stories rooted in soil, season, and the slow unfolding of wild things.</p>
+    <div class="hero-ctas">
+      <a href="#books" class="btn-primary">Explore the Books</a>
+      <a href="#about" class="btn-ghost">About Evie</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- botanical background -->
+    <svg class="hero-illustration" viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="480" cy="120" rx="200" ry="300" fill="#4f772d" transform="rotate(25 480 120)"/>
+      <ellipse cx="100" cy="580" rx="180" ry="260" fill="#31572c" transform="rotate(-15 100 580)"/>
+      <ellipse cx="320" cy="350" rx="140" ry="200" fill="#90a955" transform="rotate(10 320 350)"/>
+      <circle cx="500" cy="500" r="80" fill="#132a13"/>
+      <ellipse cx="50" cy="200" rx="90" ry="160" fill="#4f772d" transform="rotate(30 50 200)"/>
+    </svg>
+
+    <div style="position:relative; z-index:2; text-align:center;">
+      <div class="portrait-frame">
+        <div class="portrait-bg">
+          <div class="portrait-accent"></div>
+          <!-- decorative leaf SVG inside portrait -->
+          <svg width="280" height="380" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;opacity:0.18;">
+            <path d="M140 380 C 80 280, 20 200, 60 100 C 100 0, 180 0, 220 100 C 260 200, 200 280, 140 380Z" fill="#90a955"/>
+            <line x1="140" y1="380" x2="140" y2="80" stroke="#ecf39e" stroke-width="1"/>
+            <line x1="140" y1="280" x2="80" y2="180" stroke="#ecf39e" stroke-width="0.8"/>
+            <line x1="140" y1="240" x2="200" y2="160" stroke="#ecf39e" stroke-width="0.8"/>
+            <line x1="140" y1="200" x2="90" y2="140" stroke="#ecf39e" stroke-width="0.8"/>
+            <line x1="140" y1="170" x2="190" y2="120" stroke="#ecf39e" stroke-width="0.8"/>
+          </svg>
+          <!-- author silhouette placeholder -->
+          <svg width="220" height="290" viewBox="0 0 220 290" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:0;">
+            <ellipse cx="110" cy="65" rx="42" ry="50" fill="#4f772d"/>
+            <path d="M30 290 C 30 170, 60 140, 110 130 C 160 140, 190 170, 190 290Z" fill="#4f772d"/>
+          </svg>
+        </div>
+      </div>
+      <p class="portrait-caption">author &amp; naturalist</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <p class="section-label">About</p>
+    <blockquote class="about-quote">"Every garden holds a story the rain has already begun to tell."</blockquote>
+  </div>
+  <div class="about-text">
+    <p>Evie Fawbush grew up between the hedgerows of rural Vermont and the reading rooms of New England's oldest libraries. She spent her childhood making field journals of wildflowers and her adulthood turning those journals into literature.</p>
+    <p>Her writing moves between memoir, nature essay, and literary fiction — always with roots in the sensory world, always asking what it means to tend something: a plot of land, a friendship, a grief that hasn't finished growing.</p>
+    <p>She teaches creative nonfiction at the Bread Loaf Writers' Conference and lives with her partner and two rescue dogs in the Champlain Valley.</p>
+    <div class="about-stats">
+      <div>
+        <span class="stat-num">6</span>
+        <span class="stat-label">Books</span>
+      </div>
+      <div>
+        <span class="stat-num">14</span>
+        <span class="stat-label">Awards</span>
+      </div>
+      <div>
+        <span class="stat-num">200k</span>
+        <span class="stat-label">Readers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="books" id="books">
+  <p class="section-label">Selected Works</p>
+  <h2>The <em style="font-style:italic;">Books</em></h2>
+  <div class="books-grid">
+
+    <div class="book-card">
+      <div class="book-cover book-cover-1">
+        <div class="book-cover-art">
+          <div>
+            <div class="book-cover-title">The Understory<br>Season</div>
+          </div>
+          <div class="book-cover-author">Evie Fawbush</div>
+        </div>
+        <svg class="book-cover-deco" width="120" height="150" viewBox="0 0 120 150" fill="none">
+          <ellipse cx="60" cy="75" rx="50" ry="70" fill="#ecf39e"/>
+          <line x1="60" y1="145" x2="60" y2="20" stroke="#ecf39e" stroke-width="1.5"/>
+          <line x1="60" y1="100" x2="30" y2="65" stroke="#ecf39e" stroke-width="1"/>
+          <line x1="60" y1="75" x2="90" y2="50" stroke="#ecf39e" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="book-title">The Understory Season</div>
+      <div class="book-meta">2023 &nbsp;·&nbsp; Literary Fiction</div>
+      <div class="book-blurb">A novel about a botanist returning to her childhood home and the forest that has grown in her absence.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover book-cover-2">
+        <div class="book-cover-art">
+          <div>
+            <div class="book-cover-title">Field Notes on<br>Forgetting</div>
+          </div>
+          <div class="book-cover-author">Evie Fawbush</div>
+        </div>
+        <svg class="book-cover-deco" width="100" height="130" viewBox="0 0 100 130" fill="none">
+          <circle cx="50" cy="65" r="45" fill="#132a13"/>
+          <circle cx="50" cy="65" r="30" fill="#31572c"/>
+          <circle cx="50" cy="65" r="15" fill="#4f772d"/>
+        </svg>
+      </div>
+      <div class="book-title">Field Notes on Forgetting</div>
+      <div class="book-meta">2020 &nbsp;·&nbsp; Memoir / Essay</div>
+      <div class="book-blurb">A braided memoir weaving the cycles of a Vermont garden with the slow erosion of her mother's memory.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover book-cover-3">
+        <div class="book-cover-art">
+          <div>
+            <div class="book-cover-title">Where the Slow<br>Water Goes</div>
+          </div>
+          <div class="book-cover-author">Evie Fawbush</div>
+        </div>
+        <svg class="book-cover-deco" width="110" height="120" viewBox="0 0 110 120" fill="none">
+          <path d="M10 110 Q 30 20, 55 60 Q 80 100, 100 10" stroke="#90a955" stroke-width="2" fill="none"/>
+          <path d="M20 110 Q 40 30, 55 70 Q 70 100, 90 20" stroke="#ecf39e" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="book-title">Where the Slow Water Goes</div>
+      <div class="book-meta">2017 &nbsp;·&nbsp; Literary Fiction</div>
+      <div class="book-blurb">Two strangers meet during a flood and spend a week mapping the topography of their lives.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="press">
+  <div class="press-inner">
+    <p class="section-label" style="text-align:center;">Press</p>
+    <div class="press-quotes">
+      <div class="press-quote">
+        <p>Fawbush writes about the natural world the way some writers write about the ocean — as if it were the only honest metaphor we have left.</p>
+        <div class="press-source">— The New York Times Book Review</div>
+      </div>
+      <div class="press-quote">
+        <p>There is a patience to her prose that feels almost botanical itself — it unfurls slowly, deliberately, and then suddenly you are deep inside something beautiful.</p>
+        <div class="press-source">— The Paris Review</div>
+      </div>
+      <div class="press-quote">
+        <p>A rare voice that manages to be both rigorous and tender. Her essays are essential reading for anyone who has ever tended a garden or buried something they loved.</p>
+        <div class="press-source">— Orion Magazine</div>
+      </div>
+      <div class="press-quote">
+        <p>The Understory Season is the novel I will press into the hands of every reader who believes good fiction must also teach us how to pay attention.</p>
+        <div class="press-source">— Kirkus Reviews (starred)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events">
+  <div class="events-header">
+    <div>
+      <p class="section-label">On the Road</p>
+      <h2>Upcoming Events</h2>
+    </div>
+    <a href="#contact" class="btn-ghost">Book Evie</a>
+  </div>
+  <div class="events-list">
+    <div class="event-row">
+      <div class="event-date">
+        <strong>14</strong>
+        Jun 2026
+      </div>
+      <div>
+        <div class="event-name">Vermont Book Shop — Author Reading &amp; Signing</div>
+        <div class="event-location">Middlebury, VT</div>
+      </div>
+      <div class="event-tag">Reading</div>
+    </div>
+    <div class="event-row">
+      <div class="event-date">
+        <strong>28</strong>
+        Jun 2026
+      </div>
+      <div>
+        <div class="event-name">Bread Loaf Writers' Conference — Faculty Panel</div>
+        <div class="event-location">Ripton, VT</div>
+      </div>
+      <div class="event-tag">Panel</div>
+    </div>
+    <div class="event-row">
+      <div class="event-date">
+        <strong>09</strong>
+        Aug 2026
+      </div>
+      <div>
+        <div class="event-name">Strand Book Store — In Conversation with Aimee Nezhukumatathil</div>
+        <div class="event-location">New York, NY</div>
+      </div>
+      <div class="event-tag">Conversation</div>
+    </div>
+    <div class="event-row">
+      <div class="event-date">
+        <strong>22</strong>
+        Sep 2026
+      </div>
+      <div>
+        <div class="event-name">Chicago Humanities Festival — Keynote Address</div>
+        <div class="event-location">Chicago, IL</div>
+      </div>
+      <div class="event-tag">Keynote</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="contact">
+  <p class="section-label" style="color:rgba(19,42,19,0.5);">Stay Connected</p>
+  <h2>Letters from the Garden</h2>
+  <p>Seasonal dispatches on writing, reading, and growing things. No more than once a month.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="your@email.com">
+    <button type="button">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Evie Fawbush</div>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">Substack</a></li>
+    <li><a href="#">Press Inquiries</a></li>
+    <li><a href="#">Rights &amp; Permissions</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 Evie Fawbush</div>
+</footer>
+
+<script>
+  document.querySelector('.newsletter-form button').addEventListener('click', function() {
+    const input = document.querySelector('.newsletter-form input');
+    if (input.value && input.value.includes('@')) {
+      input.value = '';
+      input.placeholder = 'You\'re on the list — thank you.';
+      this.textContent = 'Done';
+      this.style.background = '#4f772d';
+    }
+  });
+</script>
+</body>
+</html>
