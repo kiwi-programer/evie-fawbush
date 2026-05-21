@@ -1,0 +1,5 @@
+# robots.txt — update the Sitemap URL to your real domain
+User-agent: *
+Allow: /
+
+Sitemap: https://evie-fawbush.rua-labs.com/sitemap.xml
