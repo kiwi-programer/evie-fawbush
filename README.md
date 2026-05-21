@@ -14,3 +14,7 @@ To enable the GitHub Actions deployment, add the following secrets in your repos
 - `VERCEL_PROJECT_ID` — your Vercel project ID.
 
 Once the secrets are set, push to `main` and the workflow will deploy the site to Vercel.
+
+## Images
+
+Place site images in [assets/images](assets/images). A short list of recommended filenames lives in [assets/images/README.md](assets/images/README.md).
