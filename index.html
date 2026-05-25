@@ -723,11 +723,15 @@
 
     .hero,
     .about,
-    .books-grid,
     .press-quotes,
     .events-list,
     footer {
       grid-template-columns: 1fr;
+    }
+
+    .books-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
     }
 
     .hero {
@@ -736,6 +740,8 @@
 
     .hero-left {
       padding: 7rem 0 3rem;
+      text-align: center;
+      align-items: center;
     }
 
     .hero-right {
@@ -747,7 +753,6 @@
       gap: 2.5rem;
     }
 
-    .books-grid,
     .press-quotes {
       gap: 1.5rem;
     }
@@ -799,6 +804,20 @@
       padding-bottom: 2rem;
     }
 
+    h1 {
+      font-size: clamp(2.8rem, 14vw, 4rem);
+      line-height: 0.95;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 34ch;
+      text-wrap: balance;
+    }
+
     .hero-right {
       min-height: 420px;
     }
@@ -813,10 +832,32 @@
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
+      align-items: stretch;
+      width: min(100%, 20rem);
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      width: 100%;
+      text-align: center;
     }
 
     .btn-ghost {
       margin-left: 0;
+    }
+
+    .books-grid {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+
+    .book-card {
+      width: min(100%, 20.5rem);
+      margin-inline: auto;
+    }
+
+    .book-cover-title {
+      font-size: 1.3rem;
     }
 
     .about-stats {
