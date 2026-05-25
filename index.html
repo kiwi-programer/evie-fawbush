@@ -577,6 +577,77 @@
     padding: 0.35rem 0.8rem;
   }
 
+  /* FAQ / Q&A */
+  .faq {
+    background: var(--c1);
+    border-top: 1px solid rgba(79,119,45,0.25);
+    border-bottom: 1px solid rgba(79,119,45,0.25);
+    padding: 7rem 5rem;
+  }
+
+  .faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--c5);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(79,119,45,0.15);
+    padding: 2rem 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--c5);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .faq-question::before {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--c4);
+    flex-shrink: 0;
+    min-width: 1.4rem;
+    text-align: center;
+  }
+
+  .faq-item.active .faq-question::before {
+    content: '−';
+  }
+
+  .faq-answer {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(236,243,158,0.7);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+  }
+
   /* CONTACT FORM */
   .contact {
     background: var(--c3);
@@ -903,6 +974,15 @@
       align-self: stretch;
     }
 
+    .faq {
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+    }
+
+    .faq-question {
+      font-size: 1rem;
+    }
+
     .footer-links {
       flex-wrap: wrap;
       gap: 1rem;
@@ -960,7 +1040,7 @@
             <line x1="140" y1="170" x2="190" y2="120" stroke="#ecf39e" stroke-width="0.8"/>
           </svg>
           <!-- author portrait (replace assets/images/portrait.png with your image) -->
-          <img src="assets/images/portrait.png" alt="Portrait of Evie Fawbush" class="portrait-img" loading="lazy" />
+          <img src="/assets/images/portrait.png" alt="Portrait of Evie Fawbush" class="portrait-img" loading="lazy" />
         </div>
       </div>
       <p class="portrait-caption">Aspiring Author</p>
@@ -1142,6 +1222,30 @@
   </div>
 </section>
 
+<!-- FAQ / Q&A -->
+<section class="faq">
+  <div class="faq-inner">
+    <p class="section-label" style="color:var(--c3);">Questions</p>
+    <h2>Frequently Asked</h2>
+    <div class="faq-item active">
+      <div class="faq-question">Where does your inspiration come from?</div>
+      <div class="faq-answer">My writing is rooted in close observation of the natural world—seasonal rhythms, the lives of plants and animals, and the places I've lived. I'm drawn to the slow unfolding of things and the stories embedded in soil and seasons.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I invite you to speak at my event?</div>
+      <div class="faq-answer">I'm always interested in events that align with my work. Please reach out through the contact form with details about your event, and we can discuss possibilities.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you accept submissions for anthologies or collaborations?</div>
+      <div class="faq-answer">I consider anthology and collaboration opportunities on a case-by-case basis. Please contact me with specifics about your project, timeline, and vision.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Where can I buy your books?</div>
+      <div class="faq-answer">My books are available through major retailers including Amazon, Apple Books, and independent bookstores. Contact your local bookstore to order, or reach out if you're seeking signed copies.</div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT FORM -->
 <section class="contact" id="contact">
   <div class="contact-inner">
@@ -1161,15 +1265,35 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">Evie Fawbush</div>
-  <ul class="footer-links">
+  <!-- <ul class="footer-links">
     <li><a href="#">Instagram</a></li>
     <li><a href="#">Substack</a></li>
     <li><a href="#">Press Inquiries</a></li>
     <li><a href="#">Rights &amp; Permissions</a></li>
-  </ul>
+  </ul> -->
   <div class="footer-copy">&copy; 2026 Evie Fawbush</div>
 </footer>
 
 <!-- Contact form posts to Web3Forms (no client-side interception) -->
+
+<script>
+  // FAQ toggle functionality
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', function() {
+      const item = this.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+      
+      // Close all other items
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        otherItem.classList.remove('active');
+      });
+      
+      // Toggle current item
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+</script>
 </body>
 </html>
