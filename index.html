@@ -29,8 +29,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="assets/images/favicon.png">
-<link rel="apple-touch-icon" href="assets/images/favicon.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+<link rel="apple-touch-icon" href="/assets/images/favicon.png">
 <style>
   :root {
     --c1: #132a13;
@@ -230,6 +230,18 @@
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
+  }
+
+  .portrait-img {
+    width: 240px;
+    height: 310px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: cover;
+    border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+    display: block;
   }
 
   .portrait-accent {
@@ -565,55 +577,73 @@
     padding: 0.35rem 0.8rem;
   }
 
-  /* NEWSLETTER */
-  .newsletter {
+  /* CONTACT FORM */
+  .contact {
     background: var(--c3);
     padding: 7rem 5rem;
-    text-align: center;
   }
 
-  .newsletter h2 {
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact h2 {
     font-family: var(--font-serif);
     font-size: clamp(2.5rem, 4vw, 3.5rem);
     font-weight: 300;
     font-style: italic;
     color: var(--c1);
     margin-bottom: 1rem;
+    text-align: center;
   }
 
-  .newsletter p {
+  .contact p {
     font-family: var(--font-serif);
     font-size: 1.1rem;
     color: rgba(19,42,19,0.7);
     margin-bottom: 2.5rem;
     font-style: italic;
+    text-align: center;
   }
 
-  .newsletter-form {
+  .contact-form {
     display: flex;
-    max-width: 480px;
-    margin: 0 auto;
-    gap: 0;
+    flex-direction: column;
+    gap: 1.2rem;
   }
 
-  .newsletter-form input {
-    flex: 1;
+  .contact-form input,
+  .contact-form textarea {
     padding: 1rem 1.4rem;
     background: rgba(19,42,19,0.15);
     border: 1px solid rgba(19,42,19,0.3);
-    border-right: none;
     color: var(--c1);
     font-family: var(--font-sans);
     font-size: 0.85rem;
     outline: none;
+    transition: border-color 0.2s;
   }
 
-  .newsletter-form input::placeholder {
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
     color: rgba(19,42,19,0.45);
   }
 
-  .newsletter-form button {
-    padding: 1rem 1.8rem;
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: rgba(19,42,19,0.6);
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 140px;
+    font-family: var(--font-serif);
+  }
+
+  .contact-form button {
+    align-self: center;
+    padding: 1rem 2.2rem;
     background: var(--c1);
     color: var(--c5);
     border: none;
@@ -622,10 +652,13 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
   }
 
-  .newsletter-form button:hover { background: var(--c2); }
+  .contact-form button:hover {
+    background: var(--c2);
+    transform: translateY(-1px);
+  }
 
   /* FOOTER */
   footer {
@@ -702,7 +735,7 @@
     nav,
     section,
     footer,
-    .newsletter {
+    .contact {
       padding-left: 2rem;
       padding-right: 2rem;
     }
@@ -768,8 +801,8 @@
       gap: 0.8rem;
     }
 
-    .newsletter-form {
-      max-width: none;
+    .contact-form {
+      gap: 1rem;
     }
 
     footer {
@@ -784,7 +817,7 @@
     nav,
     section,
     footer,
-    .newsletter {
+    .contact {
       padding-left: 1.2rem;
       padding-right: 1.2rem;
     }
@@ -865,17 +898,9 @@
       gap: 1rem;
     }
 
-    .newsletter-form {
-      flex-direction: column;
-    }
-
-    .newsletter-form input {
-      border-right: 1px solid rgba(19,42,19,0.3);
-      border-bottom: none;
-    }
-
-    .newsletter-form button {
+    .contact-form button {
       width: 100%;
+      align-self: stretch;
     }
 
     .footer-links {
@@ -903,7 +928,7 @@
 <!-- HERO -->
 <section class="hero" style="padding:0;">
   <div class="hero-left">
-    <p class="hero-eyebrow">&#11835; Author &amp; Naturalist Writer</p>
+    <p class="hero-eyebrow">&#11835; Aspiring Author</p>
     <h1>Evie<br><em>Fawbush</em></h1>
     <p class="hero-tagline">Stories rooted in soil, season, and the slow unfolding of wild things.</p>
     <div class="hero-ctas">
@@ -934,14 +959,11 @@
             <line x1="140" y1="200" x2="90" y2="140" stroke="#ecf39e" stroke-width="0.8"/>
             <line x1="140" y1="170" x2="190" y2="120" stroke="#ecf39e" stroke-width="0.8"/>
           </svg>
-          <!-- author silhouette placeholder -->
-          <svg width="220" height="290" viewBox="0 0 220 290" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:0;">
-            <ellipse cx="110" cy="65" rx="42" ry="50" fill="#4f772d"/>
-            <path d="M30 290 C 30 170, 60 140, 110 130 C 160 140, 190 170, 190 290Z" fill="#4f772d"/>
-          </svg>
+          <!-- author portrait (replace assets/images/portrait.png with your image) -->
+          <img src="assets/images/portrait.png" alt="Portrait of Evie Fawbush" class="portrait-img" loading="lazy" />
         </div>
       </div>
-      <p class="portrait-caption">author &amp; naturalist</p>
+      <p class="portrait-caption">Aspiring Author</p>
     </div>
   </div>
 </section>
@@ -958,16 +980,16 @@
     <p>She teaches creative nonfiction at the Bread Loaf Writers' Conference and lives with her partner and two rescue dogs in the Champlain Valley.</p>
     <div class="about-stats">
       <div>
-        <span class="stat-num">6</span>
+        <span class="stat-num">1</span>
         <span class="stat-label">Books</span>
       </div>
       <div>
-        <span class="stat-num">14</span>
-        <span class="stat-label">Awards</span>
+        <span class="stat-num"></span>
+        <span class="stat-label"></span>
       </div>
       <div>
-        <span class="stat-num">200k</span>
-        <span class="stat-label">Readers</span>
+        <span class="stat-num"></span>
+        <span class="stat-label"></span>
       </div>
     </div>
   </div>
@@ -983,7 +1005,7 @@
       <div class="book-cover book-cover-1">
         <div class="book-cover-art">
           <div>
-            <div class="book-cover-title">The Understory<br>Season</div>
+            <div class="book-cover-title">Only to<br>Survive</div>
           </div>
           <div class="book-cover-author">Evie Fawbush</div>
         </div>
@@ -994,7 +1016,7 @@
           <line x1="60" y1="75" x2="90" y2="50" stroke="#ecf39e" stroke-width="1"/>
         </svg>
       </div>
-      <div class="book-title">The Understory Season</div>
+      <div class="book-title">Only to Survive</div>
       <div class="book-meta">2023 &nbsp;·&nbsp; Literary Fiction</div>
       <div class="book-blurb">A novel about a botanist returning to her childhood home and the forest that has grown in her absence.</div>
     </div>
@@ -1003,7 +1025,7 @@
       <div class="book-cover book-cover-2">
         <div class="book-cover-art">
           <div>
-            <div class="book-cover-title">Field Notes on<br>Forgetting</div>
+            <div class="book-cover-title">Only to<br>Die</div>
           </div>
           <div class="book-cover-author">Evie Fawbush</div>
         </div>
@@ -1013,7 +1035,7 @@
           <circle cx="50" cy="65" r="15" fill="#4f772d"/>
         </svg>
       </div>
-      <div class="book-title">Field Notes on Forgetting</div>
+      <div class="book-title">Only to Die</div>
       <div class="book-meta">2020 &nbsp;·&nbsp; Memoir / Essay</div>
       <div class="book-blurb">A braided memoir weaving the cycles of a Vermont garden with the slow erosion of her mother's memory.</div>
     </div>
@@ -1022,7 +1044,7 @@
       <div class="book-cover book-cover-3">
         <div class="book-cover-art">
           <div>
-            <div class="book-cover-title">Where the Slow<br>Water Goes</div>
+            <div class="book-cover-title">Only to<br>Kill</div>
           </div>
           <div class="book-cover-author">Evie Fawbush</div>
         </div>
@@ -1031,7 +1053,7 @@
           <path d="M20 110 Q 40 30, 55 70 Q 70 100, 90 20" stroke="#ecf39e" stroke-width="1" fill="none"/>
         </svg>
       </div>
-      <div class="book-title">Where the Slow Water Goes</div>
+      <div class="book-title">Only to Kill</div>
       <div class="book-meta">2017 &nbsp;·&nbsp; Literary Fiction</div>
       <div class="book-blurb">Two strangers meet during a flood and spend a week mapping the topography of their lives.</div>
     </div>
@@ -1121,14 +1143,19 @@
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="newsletter" id="contact">
-  <p class="section-label" style="color:rgba(19,42,19,0.5);">Stay Connected</p>
-  <h2>Letters from the Garden</h2>
-  <p>Seasonal dispatches on writing, reading, and growing things. No more than once a month.</p>
-  <div class="newsletter-form">
-    <input type="email" placeholder="your@email.com">
-    <button type="button">Subscribe</button>
+<!-- CONTACT FORM -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-label" style="color:rgba(19,42,19,0.5);">Get in Touch</p>
+    <h2>Say Hello</h2>
+    <p>Send a message and I'll get back to you as soon as I can.</p>
+    <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="b14f4fd6-8835-4dac-805d-efe3384938f4">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <textarea name="message" placeholder="Your message..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </div>
 </section>
 
@@ -1144,16 +1171,6 @@
   <div class="footer-copy">&copy; 2026 Evie Fawbush</div>
 </footer>
 
-<script>
-  document.querySelector('.newsletter-form button').addEventListener('click', function() {
-    const input = document.querySelector('.newsletter-form input');
-    if (input.value && input.value.includes('@')) {
-      input.value = '';
-      input.placeholder = 'You\'re on the list — thank you.';
-      this.textContent = 'Done';
-      this.style.background = '#4f772d';
-    }
-  });
-</script>
+<!-- Contact form posts to Web3Forms (no client-side interception) -->
 </body>
 </html>
